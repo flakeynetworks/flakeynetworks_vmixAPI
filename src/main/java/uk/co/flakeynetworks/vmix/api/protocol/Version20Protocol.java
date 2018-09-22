@@ -1,15 +1,16 @@
 package uk.co.flakeynetworks.vmix.api.protocol;
 
+import uk.co.flakeynetworks.vmix.VMixHost;
 import uk.co.flakeynetworks.vmix.VMixVersion;
 import uk.co.flakeynetworks.vmix.api.TCPAPI;
+import uk.co.flakeynetworks.vmix.status.Input;
+import uk.co.flakeynetworks.vmix.status.VMixStatus;
 
 import java.util.StringTokenizer;
 
 public class Version20Protocol implements VMixTCPProtocol {
 
-
     private TCPAPI connection;
-
 
     public Version20Protocol(TCPAPI connection) {
 
@@ -20,7 +21,7 @@ public class Version20Protocol implements VMixTCPProtocol {
     @Override
     public void processMessage(String message) {
 
-        System.out.println(message);
+        System.err.println(message);
 
         if(message == null) return;
 
@@ -56,6 +57,43 @@ public class Version20Protocol implements VMixTCPProtocol {
 
                     if(!tokenizer.hasMoreTokens()) return;
                     String tallyString = tokenizer.nextToken();
+
+                    VMixHost host = connection.getHost();
+                    VMixStatus status = host.getStatus();
+
+                    if(tallyString.length() != status.getNumberOfInputs()) {
+
+                        if(!host.update()) {
+                            // TODO DATA INCONSISTANCY HERE HANDLE THIS!
+                            return;
+                        } // end of if
+                    } // end of if
+
+                    // Update the vmix status
+                    System.err.println("TALLY update:" + tallyString);
+
+
+                    for(int i = 0; i < tallyString.length(); i++) {
+
+                        Input input = status.getInput(i);
+
+                        switch(tallyString.charAt(i)) {
+                            case '0':
+                                input.setIsPreview(false);
+                                input.setIsProgram(false);
+                                break;
+
+                            case '1':
+                                input.setIsPreview(true);
+                                input.setIsProgram(false);
+                                break;
+
+                            case '2':
+                                input.setIsPreview(false);
+                                input.setIsProgram(true);
+                                break;
+                        } // end of switch
+                    } // end of for
                 } // end of if
 
                 break;

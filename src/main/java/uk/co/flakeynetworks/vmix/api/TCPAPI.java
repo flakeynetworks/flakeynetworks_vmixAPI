@@ -101,4 +101,7 @@ public class TCPAPI {
 
 
     public VMixTCPProtocol getProtocol() { return protocol; } // end of getProtocol
+
+
+    public VMixHost getHost() { return host; } // end of getHost
 } // end of TCPAPI

@@ -25,6 +25,7 @@ public class VMixHost {
     private URL vMixUrl;
     private int vMixPort = DEFAULT_VMIX_PORT;
     private VMixVersion version = VMixVersion.VERSION_13;
+    private VMixStatus lastKnownStatus;
 
 
     public VMixHost(String address, int webControllerPort) throws MalformedURLException {
@@ -80,7 +81,7 @@ public class VMixHost {
     } // end of runCommands
 
 
-    public VMixStatus getStatus() {
+    public boolean update() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(vMixUrl.toString())
@@ -93,17 +94,23 @@ public class VMixHost {
         try {
             Response<VMixStatus> response = statusAPI.getStatus().execute();
 
-            return response.body();
-        } catch (IOException ignored){ } // end of catch
+            VMixStatus newStatus = response.body();
 
-        return null;
-    } // end of getStatus
+            if(lastKnownStatus == null)
+                lastKnownStatus = newStatus;
+            else
+                lastKnownStatus.update(newStatus);
+        } catch (IOException ignored){ return false; } // end of catch
+
+        return true;
+    } // end of update
 
 
     public String getAddress() { return vMixAddress; } // end of getAddress
 
-
     public void setVersion(VMixVersion version) { this.version = version; } // end of setVersion
 
     public VMixVersion getVersion() { return version; } // end of getVersion
+
+    public VMixStatus getStatus() { return lastKnownStatus; } // end of getStatus
 } // end of VmixAPI

@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 public class Audio {
 
     @Attribute
-    private int volume;
+    private double volume;
 
     @Attribute
     private boolean muted;

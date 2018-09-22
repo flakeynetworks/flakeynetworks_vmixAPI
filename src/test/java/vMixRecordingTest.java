@@ -16,6 +16,8 @@ public class vMixRecordingTest {
 
         try {
 
+            assert host.update();
+
             // Make sure vmix isn't recording
             if(host.getStatus().isRecording())
                 host.runCommand(new RecordingStop());
@@ -26,8 +28,10 @@ public class vMixRecordingTest {
 
             // Wait for the command to take affect
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException ignored) { } // end of catch
+
+            assert host.update();
 
             // Check that vmix is recording
             assert host.getStatus().isRecording();

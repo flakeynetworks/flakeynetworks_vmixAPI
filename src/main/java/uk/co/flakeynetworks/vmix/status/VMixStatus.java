@@ -15,6 +15,9 @@ public class VMixStatus {
     @Element(name="edition")
     private String vMixEdition;
 
+    @Element(name="preset",required = false)
+    private String preset;
+
     @ElementList(name="inputs")
     private List<Input> inputs;
 
@@ -58,4 +61,24 @@ public class VMixStatus {
 
         return isRecording;
     } // end of isRecording
+
+
+    public void update(VMixStatus newStatus) {
+
+        vMixVersion = newStatus.vMixVersion;
+        vMixEdition = newStatus.vMixEdition;
+        preset = newStatus.preset;
+
+        // Go through the last known inputs, if they are still there then update them
+        inputs.forEach(input -> {
+
+            if(newStatus.inputs.contains(input));
+        });
+    } // end of update
+
+
+    public int getNumberOfInputs() { return inputs.size(); } // end of getNumberOfInputs
+
+
+    public Input getInput(int index) { return inputs.get(index); } // end of getInput
 } // end of VMixStatus
