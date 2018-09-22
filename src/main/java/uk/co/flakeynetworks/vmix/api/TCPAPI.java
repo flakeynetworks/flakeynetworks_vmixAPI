@@ -34,6 +34,8 @@ public class TCPAPI {
                         // TODO Assume the connection was closed? and try to reconnect
                         // NOTIFY A LISTENER THE CONNECTION WAS CLOSED
                     }
+
+                    protocol.processMessage(line);
                 } catch (IOException e) {
 
                     // Attempt to reconnect
@@ -92,6 +94,7 @@ public class TCPAPI {
             output.flush();
         } catch (IOException ignored) {
 
+            ignored.printStackTrace();
             // TODO might need to check on the network connection here.
         } // end of catch
     } // end of write

@@ -21,11 +21,52 @@ public class Version20Protocol implements VMixTCPProtocol {
     public void processMessage(String message) {
 
         System.out.println(message);
+
+        if(message == null) return;
+
+        StringTokenizer tokenizer = new StringTokenizer(message, PROTOCOL_DELIMITER);
+        if(!tokenizer.hasMoreTokens()) return;
+
+        String header = tokenizer.nextToken();
+        switch (header) {
+
+            case "SUBSCRIBE":
+
+                // Check the next status
+                if(!tokenizer.hasMoreTokens()) return;
+
+                String subscribeStatus = tokenizer.nextToken();
+                switch(subscribeStatus) {
+
+                    case "OK":
+                        break;
+
+                    case "ER":
+                        break;
+                } // end of switch
+                break;
+
+            case "TALLY":
+
+                // Get the status
+                if(!tokenizer.hasMoreTokens()) return;
+
+                String tallyStatus = tokenizer.nextToken();
+                if(tallyStatus.equals("OK")) {
+
+                    if(!tokenizer.hasMoreTokens()) return;
+                    String tallyString = tokenizer.nextToken();
+                } // end of if
+
+                break;
+        } // end of switch
     } // end of processMessage
 
 
     @Override
     public VMixVersion decodeVersion(String response) {
+
+        System.out.println("Decoding: " + response);
 
         StringTokenizer tokenizer = new StringTokenizer(response, PROTOCOL_DELIMITER);
         if(tokenizer.countTokens() != 3) return null;
