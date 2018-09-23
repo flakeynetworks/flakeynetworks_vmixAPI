@@ -70,10 +70,12 @@ public class VMixStatus {
         preset = newStatus.preset;
 
         // Go through the last known inputs, if they are still there then update them
-        inputs.forEach(input -> {
+        for(Input input: inputs) {
 
             if(newStatus.inputs.contains(input));
-        });
+
+            // TODO COMPLETE THE UPDATING
+        } // end of for
     } // end of update
 
 

@@ -89,8 +89,10 @@ public class Input {
         boolean oldValue = this.program;
         this.program = active;
 
-        if(oldValue != program)
-            listeners.forEach(InputStatusChangeListener::isProgramChange);
+        if(oldValue != program) {
+            for(InputStatusChangeListener listener: listeners)
+                listener.isProgramChange();
+        } // end of if
     } // end of setIsActive
 
 
@@ -99,8 +101,11 @@ public class Input {
         boolean oldValue = this.preview;
         this.preview = active;
 
-        if(oldValue != preview)
-            listeners.forEach(InputStatusChangeListener::isPreviewChange);
+        if(oldValue != preview) {
+
+            for(InputStatusChangeListener listener: listeners)
+                listener.isPreviewChange();
+        } // end of if
     } // end of setIsPreview
 
 
