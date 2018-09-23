@@ -84,13 +84,13 @@ public class Version20Protocol implements VMixTCPProtocol {
                                 break;
 
                             case '1':
-                                input.setIsPreview(true);
-                                input.setIsProgram(false);
+                                input.setIsPreview(false);
+                                input.setIsProgram(true);
                                 break;
 
                             case '2':
-                                input.setIsPreview(false);
-                                input.setIsProgram(true);
+                                input.setIsPreview(true);
+                                input.setIsProgram(false);
                                 break;
                         } // end of switch
                     } // end of for
