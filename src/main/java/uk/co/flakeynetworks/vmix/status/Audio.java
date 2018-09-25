@@ -13,11 +13,11 @@ public class Audio {
     private boolean muted;
 
     @Attribute
-    private int meterF1;
+    private double meterF1;
 
     @Attribute
-    private int meterF2;
+    private double meterF2;
 
     @Attribute
-    private int headphonesVolume;
+    private double headphonesVolume;
 } // end of Audio

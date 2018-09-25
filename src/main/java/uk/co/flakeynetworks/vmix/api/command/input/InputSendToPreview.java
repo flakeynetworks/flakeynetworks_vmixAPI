@@ -1,5 +1,6 @@
-package uk.co.flakeynetworks.vmix.api.command;
+package uk.co.flakeynetworks.vmix.api.command.input;
 
+import uk.co.flakeynetworks.vmix.api.command.VMixCommand;
 import uk.co.flakeynetworks.vmix.status.Input;
 
 public class InputSendToPreview extends VMixCommand {

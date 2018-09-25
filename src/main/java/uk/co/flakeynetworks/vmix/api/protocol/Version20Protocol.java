@@ -61,7 +61,7 @@ public class Version20Protocol implements VMixTCPProtocol {
                     VMixHost host = connection.getHost();
                     VMixStatus status = host.getStatus();
 
-                    if(tallyString.length() != status.getNumberOfInputs()) {
+                    if(tallyString.length() != status.getNumberOfInputs() || tallyString.length() == 2) {
 
                         if(!host.update()) {
                             // TODO DATA INCONSISTANCY HERE HANDLE THIS!
@@ -70,12 +70,17 @@ public class Version20Protocol implements VMixTCPProtocol {
                     } // end of if
 
                     // Update the vmix status
-                    System.err.println("TALLY update:" + tallyString);
-
 
                     for(int i = 0; i < tallyString.length(); i++) {
 
                         Input input = status.getInput(i);
+                        if(input == null) {
+
+                            // Move likely the input was remove or is in an unknow position.
+                            input.setIsProgram(false);
+                            input.setIsPreview(false);
+                        } // end of if
+
 
                         switch(tallyString.charAt(i)) {
                             case '0':

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Root(strict=false)
-public class Input {
+public class Input implements Comparable<Input> {
 
     @Attribute(name="key")
     private String key;
@@ -19,10 +19,10 @@ public class Input {
     private int number;
 
     @Attribute(required = false)
-    private int meterF1 = 0;
+    private double meterF1 = 0;
 
     @Attribute(required = false)
-    private int meterF2 = 0;
+    private double meterF2 = 0;
 
     @Attribute(required = false)
     private boolean solo = false;
@@ -54,6 +54,8 @@ public class Input {
     private boolean program = false;
     private boolean preview = false;
 
+    private boolean inputValid = true;
+
     private Set<InputStatusChangeListener> listeners = new HashSet<>();
 
 
@@ -67,14 +69,17 @@ public class Input {
     public boolean isLooped() { return isLooped; } // end of isLooped
     public boolean isProgram() { return program; } // end of isProgram
     public boolean isPreview() { return preview; } // end of isPreview
+    public boolean isInputValid() { return inputValid; } // end of isValid
 
 
     public boolean addStatusChangeListener(InputStatusChangeListener listener) {
+
         return listeners.add(listener);
     } // end of addStatusChangeListener
 
 
     public boolean removeStatusChangeListener(InputStatusChangeListener listener) {
+
         return listeners.remove(listener);
     } // end of removeStatusChangeListener
 
@@ -90,8 +95,11 @@ public class Input {
         this.program = active;
 
         if(oldValue != program) {
-            for(InputStatusChangeListener listener: listeners)
+            for(InputStatusChangeListener listener: listeners) {
+
                 listener.isProgramChange();
+                listener.dataChanged();
+            } // end for
         } // end of if
     } // end of setIsActive
 
@@ -103,15 +111,81 @@ public class Input {
 
         if(oldValue != preview) {
 
-            for(InputStatusChangeListener listener: listeners)
+            for(InputStatusChangeListener listener: listeners) {
+
                 listener.isPreviewChange();
+                listener.dataChanged();
+            } // end for
         } // end of if
     } // end of setIsPreview
 
+    @Override
+    public boolean equals(Object object) {
+
+        if(!(object instanceof Input)) return false;
+
+        return equals((Input) object);
+    } // end of equals
 
     public boolean equals(Input input) {
 
-        System.out.println("equals called!");
+        System.out.println("Checking");
         return key.equals(input.key);
     } // end of equals
+
+
+    public void notifyInputWasRemoved() {
+
+        inputValid = false;
+
+        for(InputStatusChangeListener listener: listeners) {
+
+            listener.inputRemoved();
+            listener.dataChanged();
+        } // end for
+    } // end of notifyInputWasRemoved
+
+
+    public void update(Input newInput) {
+
+        if(newInput == null) return;
+
+        // Make sure the keys are the same
+        if(!equals(newInput)) return;
+
+        // Update all the values
+        duration = newInput.duration;
+        number = newInput.number;
+        meterF1 = newInput.meterF1;
+        meterF2 = newInput.meterF2;
+        solo = newInput.solo;
+        audiobusses = newInput.audiobusses;
+        volume = newInput.volume;
+        balance = newInput.balance;
+        type = newInput.type;
+        title = newInput.title;
+        state = newInput.state;
+        position = newInput.position;
+        isLooped = newInput.isLooped;
+        program = newInput.program;
+        preview = newInput.preview;
+        inputValid = newInput.inputValid;
+
+        for(InputStatusChangeListener listener: listeners)
+            listener.dataChanged();
+    } // end of update
+
+
+    @Override
+    public int compareTo(Input o) {
+
+        return number - o.number;
+    } // end of compareTo
+
+
+    @Override
+    public int hashCode() {
+
+        return key.hashCode();
+    } // end of hashCode
 } // end of Input
