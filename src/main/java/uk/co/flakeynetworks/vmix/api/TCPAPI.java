@@ -36,7 +36,6 @@ public class TCPAPI {
 
                     String line = input.readLine();
                     if(line == null) {
-
                         close();
                         // TODO Assume the connection was closed? and try to reconnect
                     } // end of if
@@ -129,12 +128,6 @@ public class TCPAPI {
 
     public synchronized void close() {
 
-        if(listeningThread != null) {
-
-            listeningThread.stop();
-            listeningThread = null;
-        } // end of if
-
         if(output != null) {
             try {
                 output.close();
@@ -158,6 +151,9 @@ public class TCPAPI {
             } catch (IOException ignored) {
             } // end of catch
         } // end of if
+
+        if(listeningThread != null)
+            listeningThread = null;
 
         // Notify all the listeners that the connection was disconnected
         for(TCPAPIListener listener: listeners)

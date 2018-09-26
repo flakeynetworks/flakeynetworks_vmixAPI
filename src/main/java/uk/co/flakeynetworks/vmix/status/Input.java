@@ -129,7 +129,6 @@ public class Input implements Comparable<Input> {
 
     public boolean equals(Input input) {
 
-        System.out.println("Checking");
         return key.equals(input.key);
     } // end of equals
 
