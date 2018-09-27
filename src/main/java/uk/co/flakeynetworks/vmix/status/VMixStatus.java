@@ -4,9 +4,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Root(name="vmix",strict=false)
 public class VMixStatus {
@@ -59,6 +57,15 @@ public class VMixStatus {
     @ElementList(name="audio")
     private List<Audio> audio;
 
+
+    private Set<HostStatusChangeListener> listeners;
+
+    public void setListeners(Set<HostStatusChangeListener> listeners) {
+
+        this.listeners = listeners;
+    } // end of setListeners
+
+
     public boolean isRecording() {
 
         return isRecording;
@@ -84,7 +91,15 @@ public class VMixStatus {
                 input.update(newInput);
             } else {
                 currentInputs.remove();
+
+                // Notify all the listeners
                 input.notifyInputWasRemoved();
+
+                // Notify all the listeners that an input was added
+                if(listeners != null) {
+                    for (HostStatusChangeListener listener : listeners)
+                        listener.inputRemoved(input);
+                } // end of if
             } // end of else
         } // end of for
 
@@ -94,7 +109,14 @@ public class VMixStatus {
             if(inputs.contains(newInput)) continue;
 
             inputs.add(newInput);
+
+            // Notify all the listeners that an input was added
+            if(listeners != null) {
+                for (HostStatusChangeListener listener : listeners)
+                    listener.inputAdded(newInput);
+            } // end of if
         } // end of for
+
 
         // Sort the inputs based on number
         Collections.sort(inputs);

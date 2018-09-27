@@ -9,6 +9,19 @@ import java.util.Set;
 @Root(strict=false)
 public class Input implements Comparable<Input> {
 
+
+    public static final String TYPE_BLANK = "blank";
+    public static final String TYPE_VIDEO = "video";
+    public static final String TYPE_IMAGE = "image";
+    public static final String TYPE_PHOTO = "photos";
+    public static final String TYPE_XAML = "xaml";
+    public static final String TYPE_VIDEO_LIST = "videolist";
+    public static final String TYPE_COLOR = "colour";
+    public static final String TYPE_AUDIO_FILE = "audiofile";
+    public static final String TYPE_FLASH = "flash";
+    public static final String TYPE_POWERPOINT = "powerpoint";
+    public static final String TYPE_VALUE = "value";
+
     @Attribute(name="key")
     private String key;
 
@@ -63,7 +76,39 @@ public class Input implements Comparable<Input> {
     public String getKey() { return key; } // end of getKey
     public int getDuration() { return duration; } // end of getDuration
     public int getNumber() { return number; } // end of getNumber
-    public String getType() { return type; } // end of getType
+
+    public String getType() {
+
+        String casetype = type.toLowerCase();
+        switch (casetype) {
+            case TYPE_AUDIO_FILE:
+                return TYPE_AUDIO_FILE;
+            case TYPE_BLANK:
+                return TYPE_BLANK;
+            case TYPE_COLOR:
+                return TYPE_COLOR;
+            case TYPE_FLASH:
+                return TYPE_FLASH;
+            case TYPE_IMAGE:
+                return TYPE_IMAGE;
+            case TYPE_PHOTO:
+                return TYPE_PHOTO;
+            case TYPE_POWERPOINT:
+                return TYPE_POWERPOINT;
+            case TYPE_VALUE:
+                return TYPE_VALUE;
+            case TYPE_VIDEO:
+                return TYPE_VIDEO;
+            case TYPE_VIDEO_LIST:
+                return TYPE_VIDEO_LIST;
+            case TYPE_XAML:
+                return TYPE_XAML;
+            default:
+                return casetype;
+        } // end of switch
+    } // end of getType
+
+
     public String getState() { return state; } // end of getState
     public int getPosition() { return position; } // end of getPosition
     public boolean isLooped() { return isLooped; } // end of isLooped
@@ -187,4 +232,8 @@ public class Input implements Comparable<Input> {
 
         return key.hashCode();
     } // end of hashCode
+
+
+    @Override
+    public String toString() { return getNumber() + ": " + getName(); } // end of toString
 } // end of Input

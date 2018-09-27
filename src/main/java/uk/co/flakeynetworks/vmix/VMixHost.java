@@ -6,6 +6,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 import uk.co.flakeynetworks.vmix.api.VMixStatusAPI;
 import uk.co.flakeynetworks.vmix.api.command.VMixCommand;
 import uk.co.flakeynetworks.vmix.api.exceptions.FeatureNotAvailableException;
+import uk.co.flakeynetworks.vmix.status.HostStatusChangeListener;
 import uk.co.flakeynetworks.vmix.status.VMixStatus;
 import uk.co.flakeynetworks.web.ParameterStringBuilder;
 
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 public class VMixHost {
 
@@ -26,6 +29,25 @@ public class VMixHost {
     private int vMixPort = DEFAULT_VMIX_PORT;
     private VMixVersion version = VMixVersion.VERSION_13;
     private VMixStatus lastKnownStatus;
+
+
+    private final Set<HostStatusChangeListener> listeners = new HashSet<>();
+
+
+    public boolean addListener(HostStatusChangeListener listener) {
+
+        return listeners.add(listener);
+    } // end of addListener
+
+
+    public boolean removeListener(HostStatusChangeListener listener) {
+        return listeners.remove(listener);
+    } // end of removeListener
+
+
+    public void removeAllListeners() {
+        listeners.clear();
+    } // end of removeAllListener
 
 
     public VMixHost(String address, int webControllerPort) throws MalformedURLException {
@@ -96,10 +118,13 @@ public class VMixHost {
 
             VMixStatus newStatus = response.body();
 
-            if(lastKnownStatus == null)
+            if(lastKnownStatus == null) {
+
+                newStatus.setListeners(listeners);
                 lastKnownStatus = newStatus;
-            else
+            } else {
                 lastKnownStatus.update(newStatus);
+            } // end of else
         } catch (IOException ignored){ return false; } // end of catch
 
         return true;
