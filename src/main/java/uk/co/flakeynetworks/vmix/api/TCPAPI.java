@@ -166,7 +166,7 @@ public class TCPAPI {
         try {
             output.write(writeTo);
             output.flush();
-        } catch (IOException ignored) {
+        } catch (IOException | NullPointerException ignored) {
 
             // Restart the connection
             close();

@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6f76206-472a-45bd-bb3b-d7e950dcfec9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/HostStatusChangeListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -58,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TCPAPI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TCPAPI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="132" column="3" selection-start-line="132" selection-start-column="3" selection-end-line="132" selection-end-column="3" />
+            <state relative-caret-position="468">
+              <caret line="168" column="52" selection-start-line="168" selection-start-column="52" selection-end-line="168" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,7 +109,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Input.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Input.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="447">
@@ -527,12 +522,12 @@
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/command/input/InputAdd.java" />
         <option value="$PROJECT_DIR$/src/test/java/vMixTCPTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/protocol/Version20Protocol.java" />
-        <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/HostStatusChangeListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestListeners.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java" />
       </list>
     </option>
   </component>
@@ -1218,16 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="132" column="3" selection-start-line="132" selection-start-column="3" selection-end-line="132" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPIListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1279,6 +1264,16 @@
             <element signature="imports" expanded="true" />
             <element signature="e#3052#3053#0" expanded="true" />
             <element signature="e#3085#3086#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="168" column="52" selection-start-line="168" selection-start-column="52" selection-end-line="168" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
