@@ -6,6 +6,9 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 import uk.co.flakeynetworks.vmix.api.VMixStatusAPI;
 import uk.co.flakeynetworks.vmix.api.command.VMixCommand;
 import uk.co.flakeynetworks.vmix.api.exceptions.FeatureNotAvailableException;
+import uk.co.flakeynetworks.vmix.api.service.VMixAPIService;
+import uk.co.flakeynetworks.vmix.api.service.VMixAPIServiceRetrofit;
+import uk.co.flakeynetworks.vmix.api.web.VMixWebAPI;
 import uk.co.flakeynetworks.vmix.status.HostStatusChangeListener;
 import uk.co.flakeynetworks.vmix.status.VMixStatus;
 import uk.co.flakeynetworks.web.ParameterStringBuilder;
@@ -105,18 +108,12 @@ public class VMixHost {
 
     public boolean update() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(vMixUrl.toString())
-                .addConverterFactory(SimpleXmlConverterFactory.create())
-                .build();
-
-
-        VMixStatusAPI statusAPI = retrofit.create(VMixStatusAPI.class);
+        VMixAPIService apiService = new VMixAPIServiceRetrofit();
+        VMixWebAPI api = apiService.connect(vMixUrl);
 
         try {
-            Response<VMixStatus> response = statusAPI.getStatus().execute();
 
-            VMixStatus newStatus = response.body();
+            VMixStatus newStatus = api.getStatus();
 
             if(lastKnownStatus == null) {
 

@@ -10,18 +10,27 @@ import java.util.StringTokenizer;
 
 public class Version20Protocol implements VMixTCPProtocol {
 
-    private TCPAPI connection;
 
-    public Version20Protocol(TCPAPI connection) {
+    private TCPAPI connection;
+    private long lastMessageTimestamp = 0;
+    private VMixHost host;
+
+
+    public Version20Protocol(TCPAPI connection, VMixHost host) {
 
         this.connection = connection;
+        this.host = host;
     } // end of constructor
+
+
+    public long getLastMessageTimestamp() { return lastMessageTimestamp; } // end of getLastMessageTimestamp
 
 
     @Override
     public void processMessage(String message) {
 
         System.err.println(message);
+        lastMessageTimestamp = System.currentTimeMillis();
 
         if(message == null) return;
 
@@ -46,6 +55,7 @@ public class Version20Protocol implements VMixTCPProtocol {
                         break;
                 } // end of switch
                 break;
+
 
             case "TALLY":
 
@@ -76,7 +86,7 @@ public class Version20Protocol implements VMixTCPProtocol {
                         Input input = status.getInput(i);
                         if(input == null) {
 
-                            // Move likely the input was remove or is in an unknow position.
+                            // Move likely the input was remove or is in an unknown position.
                             input.setIsProgram(false);
                             input.setIsPreview(false);
                         } // end of if

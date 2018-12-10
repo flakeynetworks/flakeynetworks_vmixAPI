@@ -139,13 +139,13 @@ public class Input implements Comparable<Input> {
         boolean oldValue = this.program;
         this.program = active;
 
-        if(oldValue != program) {
+        //if(oldValue != program) {
             for(InputStatusChangeListener listener: listeners) {
 
                 listener.isProgramChange();
                 listener.dataChanged();
             } // end for
-        } // end of if
+        //} // end of if
     } // end of setIsActive
 
 
@@ -154,14 +154,14 @@ public class Input implements Comparable<Input> {
         boolean oldValue = this.preview;
         this.preview = active;
 
-        if(oldValue != preview) {
+        //if(oldValue != active) {
 
             for(InputStatusChangeListener listener: listeners) {
 
                 listener.isPreviewChange();
                 listener.dataChanged();
             } // end for
-        } // end of if
+        //} // end of if
     } // end of setIsPreview
 
     @Override

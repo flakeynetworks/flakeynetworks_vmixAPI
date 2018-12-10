@@ -1,13 +1,11 @@
-package uk.co.flakeynetworks.vmix.api;
+package uk.co.flakeynetworks.vmix.api.web.retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import uk.co.flakeynetworks.vmix.status.VMixStatus;
 
-@Deprecated
-public interface VMixStatusAPI {
+public interface VMixRetrofitStatusAPI {
 
-    @Deprecated
     @GET("?")
     Call<VMixStatus> getStatus();
 } // end of vMixStatus

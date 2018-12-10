@@ -16,7 +16,6 @@ import java.net.MalformedURLException;
 
 public class vMixTCPTest {
 
-    @Test
     public void testTCPConnection() {
 
         try {
@@ -52,13 +51,13 @@ public class vMixTCPTest {
                 @Override
                 public void isProgramChange() {
 
-                    System.out.println("Input 1 changed program status: " + firstInput.isProgram());
+                    //System.out.println("Input " + firstInput.getName() + " changed program status: " + firstInput.isProgram());
                 } // end of isProgramChange
 
                 @Override
                 public void isPreviewChange() {
 
-                    System.out.println("Input 2 changed program status: " + firstInput.isPreview());
+                    System.out.println("Input " + firstInput.getName() + " changed preview status: " + firstInput.isPreview());
                 } // end of isPreviewChange
             };
 
@@ -71,14 +70,36 @@ public class vMixTCPTest {
             Input secondInput = status.getInput(1);
             assert host.runCommand(new TransitionCutDirect(secondInput));
 
+            try {
+                Thread.sleep(1000);
+            } catch(InterruptedException e) {} // end of catch
+
             // Put the first input into preview
             assert host.runCommand(new InputSendToPreview(firstInput));
+
+            try {
+                Thread.sleep(1000);
+            } catch(InterruptedException e) {} // end of catch
 
             // Perform a cut
             assert host.runCommand(new TransitionCut());
 
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
+            } catch(InterruptedException e) {} // end of catch
+
+            // Put the first input into preview
+            assert host.runCommand(new TransitionCut());
+
+            try {
+                Thread.sleep(1000);
+            } catch(InterruptedException e) {} // end of catch
+
+            // Put the second input into preview
+            assert host.runCommand(new InputSendToPreview(secondInput));
+
+            try {
+                Thread.sleep(1000);
             } catch(InterruptedException e) {} // end of catch
         } catch(FeatureNotAvailableException | IOException e) {
             assert false;
@@ -86,7 +107,6 @@ public class vMixTCPTest {
     } // end of testTallyUpdate
 
 
-    @Test
     public void testUpdate() {
 
         try {

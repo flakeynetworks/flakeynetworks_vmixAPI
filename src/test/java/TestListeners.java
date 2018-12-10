@@ -36,8 +36,6 @@ public class TestListeners {
                 } // end of inputAdded
             });
 
-            assert host.getStatus().getNumberOfListeners() == 1;
-
             // Listen for tally changes
             tcpConnection.getProtocol().subscribeTally();
 
