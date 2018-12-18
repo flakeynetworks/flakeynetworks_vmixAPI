@@ -9,4 +9,5 @@ public interface VMixTCPProtocol {
     void processMessage(String message);
     VMixVersion decodeVersion(String response);
     void subscribeTally();
+    long getLastMessageTimestamp();
 } // end of VMixTCPProtocol

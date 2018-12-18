@@ -1,11 +1,11 @@
 package uk.co.flakeynetworks.vmix;
 
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
-import uk.co.flakeynetworks.vmix.api.VMixStatusAPI;
 import uk.co.flakeynetworks.vmix.api.command.VMixCommand;
 import uk.co.flakeynetworks.vmix.api.exceptions.FeatureNotAvailableException;
+import uk.co.flakeynetworks.vmix.api.service.VMixAPIService;
+import uk.co.flakeynetworks.vmix.api.service.VMixAPIServiceRetrofit;
+import uk.co.flakeynetworks.vmix.api.web.VMixWebAPI;
+import uk.co.flakeynetworks.vmix.status.HostStatusChangeListener;
 import uk.co.flakeynetworks.vmix.status.VMixStatus;
 import uk.co.flakeynetworks.web.ParameterStringBuilder;
 
@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 public class VMixHost {
 
@@ -25,6 +27,26 @@ public class VMixHost {
     private URL vMixUrl;
     private int vMixPort = DEFAULT_VMIX_PORT;
     private VMixVersion version = VMixVersion.VERSION_13;
+    private VMixStatus lastKnownStatus;
+
+
+    private final Set<HostStatusChangeListener> listeners = new HashSet<>();
+
+
+    public boolean addListener(HostStatusChangeListener listener) {
+
+        return listeners.add(listener);
+    } // end of addListener
+
+
+    public boolean removeListener(HostStatusChangeListener listener) {
+        return listeners.remove(listener);
+    } // end of removeListener
+
+
+    public void removeAllListeners() {
+        listeners.clear();
+    } // end of removeAllListener
 
 
     public VMixHost(String address, int webControllerPort) throws MalformedURLException {
@@ -80,30 +102,33 @@ public class VMixHost {
     } // end of runCommands
 
 
-    public VMixStatus getStatus() {
+    public boolean update() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(vMixUrl.toString())
-                .addConverterFactory(SimpleXmlConverterFactory.create())
-                .build();
-
-
-        VMixStatusAPI statusAPI = retrofit.create(VMixStatusAPI.class);
+        VMixAPIService apiService = new VMixAPIServiceRetrofit();
+        VMixWebAPI api = apiService.connect(vMixUrl);
 
         try {
-            Response<VMixStatus> response = statusAPI.getStatus().execute();
 
-            return response.body();
-        } catch (IOException ignored){ } // end of catch
+            VMixStatus newStatus = api.getStatus();
 
-        return null;
-    } // end of getStatus
+            if(lastKnownStatus == null) {
+
+                newStatus.setListeners(listeners);
+                lastKnownStatus = newStatus;
+            } else {
+                lastKnownStatus.update(newStatus);
+            } // end of else
+        } catch (IOException ignored){ return false; } // end of catch
+
+        return true;
+    } // end of update
 
 
     public String getAddress() { return vMixAddress; } // end of getAddress
 
-
     public void setVersion(VMixVersion version) { this.version = version; } // end of setVersion
 
     public VMixVersion getVersion() { return version; } // end of getVersion
+
+    public VMixStatus getStatus() { return lastKnownStatus; } // end of getStatus
 } // end of VmixAPI

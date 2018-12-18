@@ -4,20 +4,25 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root(strict=false)
-public class Audio {
+public class Audio extends XMLParseable {
 
     @Attribute
-    private int volume;
+    @VMixStatusAttribute(name = "volume", type = Integer.class)
+    private double volume;
 
     @Attribute
+    @VMixStatusAttribute(name = "muted", type = Boolean.class)
     private boolean muted;
 
     @Attribute
-    private int meterF1;
+    @VMixStatusAttribute(name = "meterF1", type = Double.class)
+    private double meterF1;
 
     @Attribute
-    private int meterF2;
+    @VMixStatusAttribute(name = "meterF2", type = Double.class)
+    private double meterF2;
 
     @Attribute
-    private int headphonesVolume;
+    @VMixStatusAttribute(name = "headphonesVolumes", type = Double.class)
+    private double headphonesVolume;
 } // end of Audio
