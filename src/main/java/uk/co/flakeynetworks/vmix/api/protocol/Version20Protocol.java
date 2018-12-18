@@ -71,6 +71,14 @@ public class Version20Protocol implements VMixTCPProtocol {
                     VMixHost host = connection.getHost();
                     VMixStatus status = host.getStatus();
 
+                    // Check if we have a status already
+                    if(status == null) {
+
+                        host.update();
+                        return;
+                    } // end of if
+
+
                     if(tallyString.length() != status.getNumberOfInputs() || tallyString.length() == 2) {
 
                         if(!host.update()) {
@@ -80,15 +88,14 @@ public class Version20Protocol implements VMixTCPProtocol {
                     } // end of if
 
                     // Update the vmix status
-
                     for(int i = 0; i < tallyString.length(); i++) {
 
                         Input input = status.getInput(i);
                         if(input == null) {
 
-                            // Move likely the input was remove or is in an unknown position.
-                            input.setIsProgram(false);
-                            input.setIsPreview(false);
+                            // Hit an unexpected state. Get the host to update.
+                            host.update();
+                            return;
                         } // end of if
 
 
