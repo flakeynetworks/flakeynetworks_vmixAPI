@@ -6,20 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6f76206-472a-45bd-bb3b-d7e950dcfec9" name="Default" comment="Implemented a new API service which uses POJ instead of Retrofit to retrieve and parse the XML for the status api. Reason being that the XML parser utilitised with Retrofit has been deprecated and causes crashes when members are missing from the model. The VMix API isn't particularly strict in its responces so the newly implemented network service is relatively unstrict.&#10;&#10;Also made a few bug fixes when decoding the xml response">
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/poj/VMixAPIPOJ.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatusAttribute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatusListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatusNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/XMLParseable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/vMixAPIServicePOJTest.java" afterDir="false" />
+    <list default="true" id="f6f76206-472a-45bd-bb3b-d7e950dcfec9" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServicePOJ.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Overlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Overlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Transition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Transition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -38,30 +28,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VMixStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VMixStatusListNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatusListNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Input.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,32 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XMLParseable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/XMLParseable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1528">
-              <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReflectiveCallable.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="vMixAPIServicePOJTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/vMixAPIServicePOJTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="374">
+              <caret line="22" column="18" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,11 +54,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Overlay.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Overlay.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Overlay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state relative-caret-position="153">
+              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VMixHost.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="108" column="53" lean-forward="true" selection-start-line="108" selection-start-column="53" selection-end-line="108" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VMixAPIServiceRetrofit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServiceRetrofit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="27" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VMixAPIServicePOJ.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServicePOJ.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VMixAPIPOJ.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/poj/VMixAPIPOJ.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="793">
+              <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VMixAPIRetrofit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/retrofit/VMixAPIRetrofit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,26 +141,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VMixAPIPOJ.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/poj/VMixAPIPOJ.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -163,6 +156,8 @@
     <findStrings>
       <find>System.err.println(&quot;TALLY</find>
       <find>Checking</find>
+      <find>VMIx</find>
+      <find>VMixAPIServicePOJ</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -569,7 +564,6 @@
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/retrofit/VMixAPIRetrofit.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServiceRetrofit.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" />
         <option value="$PROJECT_DIR$/src/test/java/vMixAPIServicePOJTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/poj/VMixAPIPOJ.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatusParam.java" />
@@ -581,6 +575,8 @@
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Overlay.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Transition.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServicePOJ.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java" />
       </list>
     </option>
   </component>
@@ -776,6 +772,15 @@
               <item name="uk.co.flakeynetworks" type="1f31426a:PackageElementNode" />
               <item name="vmix" type="1f31426a:PackageElementNode" />
               <item name="api" type="1f31426a:PackageElementNode" />
+              <item name="service" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="vmixAPI" type="58d84e3e:PackageViewProjectNode" />
+              <item name="vmixAPI" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="vmixAPI_main" type="616d4139:PackageViewModuleNode" />
+              <item name="uk.co.flakeynetworks" type="1f31426a:PackageElementNode" />
+              <item name="vmix" type="1f31426a:PackageElementNode" />
+              <item name="api" type="1f31426a:PackageElementNode" />
               <item name="web" type="1f31426a:PackageElementNode" />
             </path>
             <path>
@@ -826,7 +831,23 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="Test&#9;PSI&#9;JAVA://vMixAPIServicePOJTest&#10;vMixAPISer&#9;PSI&#9;JAVA://vMixAPIServicePOJTest&#10;Status&#9;FILE&#9;file://C:/Personal/Projects/vmixAPIGradle/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="472" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="472" />
+    <property name="SearchEverywhereHistoryKey" value="VMixAPIServicePOJ&#9;PSI&#9;JAVA://vMixAPIServicePOJTest&#10;Test&#9;PSI&#9;JAVA://vMixAPIServicePOJTest&#10;vMixAPISer&#9;PSI&#9;JAVA://vMixAPIServicePOJTest&#10;Status&#9;FILE&#9;file://C:/Personal/Projects/vmixAPIGradle/src/main/java/uk/co/flakeynetworks/vmix/status/VMixStatus.java" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaAssociate" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -853,7 +874,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.vMixAPIServicePOJTest">
+  <component name="RunManager" selected="JUnit.vMixTCPTest">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -954,8 +975,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.vMixAPIServicePOJTest" />
         <item itemvalue="JUnit.vMixTCPTest" />
+        <item itemvalue="JUnit.vMixAPIServicePOJTest" />
       </list>
     </recent_temporary>
   </component>
@@ -967,21 +988,17 @@
       <option name="presentableId" value="Default" />
       <updated>1537618112951</updated>
     </task>
+    <task id="LOCAL-00001" summary="Implemented a new API service which uses POJ instead of Retrofit to retrieve and parse the XML for the status api. Reason being that the XML parser utilitised with Retrofit has been deprecated and causes crashes when members are missing from the model. The VMix API isn't particularly strict in its responces so the newly implemented network service is relatively unstrict.&#10;&#10;Also made a few bug fixes when decoding the xml response">
+      <created>1545116413781</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545116413781</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 14h 47m 03s.xml">
-      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 14h 48m 27s.xml">
-      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 14h 48m 46s.xml">
-      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 14h 49m 13s.xml">
-      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 14h 49m 14s.xml">
       <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
     </history-entry>
@@ -1000,6 +1017,18 @@
     <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 14h 55m 57s.xml">
       <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 15h 35m 42s.xml">
+      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 15h 51m 13s.xml">
+      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 15h 51m 16s.xml">
+      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="vMixAPIServicePOJTest - 2018.12.18 at 15h 59m 55s.xml">
+      <configuration name="vMixAPIServicePOJTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1007,12 +1036,12 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info active="true" anchor="bottom" id="Messages" order="4" visible="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32943678" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="2" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.32943678" />
-      <window_info anchor="bottom" id="Version Control" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32943678" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.25" />
@@ -1053,13 +1082,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/command/transitions/TransitionCut.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Audio.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1255,16 +1277,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServiceRetrofit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/command/VMixCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1289,16 +1301,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="63" column="22" lean-forward="true" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="94" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/TCPAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4335">
@@ -1313,13 +1315,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/retrofit/VMixAPIRetrofit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1327,6 +1325,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1348,16 +1349,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/poj/VMixAPIPOJ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1432,16 +1423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/vMixAPIServicePOJTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Input.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -1456,8 +1437,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/status/Overlay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state relative-caret-position="153">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/vMixAPIServicePOJTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/poj/VMixAPIPOJ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/web/retrofit/VMixAPIRetrofit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServiceRetrofit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="27" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/api/service/VMixAPIServicePOJ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/co/flakeynetworks/vmix/VMixHost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="108" column="53" lean-forward="true" selection-start-line="108" selection-start-column="53" selection-end-line="108" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

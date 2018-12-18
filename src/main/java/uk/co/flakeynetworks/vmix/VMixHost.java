@@ -3,6 +3,7 @@ package uk.co.flakeynetworks.vmix;
 import uk.co.flakeynetworks.vmix.api.command.VMixCommand;
 import uk.co.flakeynetworks.vmix.api.exceptions.FeatureNotAvailableException;
 import uk.co.flakeynetworks.vmix.api.service.VMixAPIService;
+import uk.co.flakeynetworks.vmix.api.service.VMixAPIServicePOJ;
 import uk.co.flakeynetworks.vmix.api.service.VMixAPIServiceRetrofit;
 import uk.co.flakeynetworks.vmix.api.web.VMixWebAPI;
 import uk.co.flakeynetworks.vmix.status.HostStatusChangeListener;
@@ -104,7 +105,7 @@ public class VMixHost {
 
     public boolean update() {
 
-        VMixAPIService apiService = new VMixAPIServiceRetrofit();
+        VMixAPIService apiService = new VMixAPIServicePOJ();
         VMixWebAPI api = apiService.connect(vMixUrl);
 
         try {
