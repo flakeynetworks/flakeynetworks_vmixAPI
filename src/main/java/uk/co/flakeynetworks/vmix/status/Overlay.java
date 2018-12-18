@@ -4,9 +4,10 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root(strict=false)
-public class Overlay implements Comparable<Overlay> {
+public class Overlay extends XMLParseable implements Comparable<Overlay> {
 
     @Attribute
+    @VMixStatusAttribute(name = "number", type = Integer.class)
     private int number;
 
 

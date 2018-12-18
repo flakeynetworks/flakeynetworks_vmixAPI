@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Root(strict=false)
-public class Input implements Comparable<Input> {
+public class Input extends XMLParseable implements Comparable<Input> {
 
 
     public static final String TYPE_BLANK = "blank";
@@ -23,45 +23,59 @@ public class Input implements Comparable<Input> {
     public static final String TYPE_VALUE = "value";
 
     @Attribute(name="key")
+    @VMixStatusAttribute(name = "key")
     private String key;
 
     @Attribute(name="duration")
+    @VMixStatusAttribute(name = "duration", type = Integer.class)
     private int duration;
 
     @Attribute(name="number")
+    @VMixStatusAttribute(name = "number", type = Integer.class)
     private int number;
 
     @Attribute(required = false)
+    @VMixStatusAttribute(name = "meterF1", type = Double.class)
     private double meterF1 = 0;
 
     @Attribute(required = false)
+    @VMixStatusAttribute(name = "meterF2", type = Double.class)
     private double meterF2 = 0;
 
     @Attribute(required = false)
+    @VMixStatusAttribute(name = "solo", type = Boolean.class)
     private boolean solo = false;
 
     @Attribute(required = false)
+    @VMixStatusAttribute(name = "audiobusses")
     private String audiobusses;
 
     @Attribute(required = false)
-    private int volume = 0;
+    @VMixStatusAttribute(name = "volume", type = Double.class)
+    private double volume = 0;
 
     @Attribute(required = false)
-    private int balance = 0;
+    @VMixStatusAttribute(name = "balance", type = Double.class)
+    private double balance = 0;
 
     @Attribute
+    @VMixStatusAttribute(name = "type")
     private String type;
 
     @Attribute
+    @VMixStatusAttribute(name = "title")
     private String title;
 
     @Attribute
+    @VMixStatusAttribute(name = "state")
     private String state;
 
     @Attribute
+    @VMixStatusAttribute(name = "position", type = Integer.class)
     private int position;
 
     @Attribute(name="loop")
+    @VMixStatusAttribute(name = "loop", type = Boolean.class)
     private boolean isLooped;
 
     private boolean program = false;

@@ -4,61 +4,91 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import java.io.IOException;
 import java.util.*;
 
 @Root(name="vmix",strict=false)
-public class VMixStatus {
+public class VMixStatus extends XMLParseable {
 
     @Element(name="version")
+    @VMixStatusNode(name="version")
     private String vMixVersion;
 
     @Element(name="edition")
+    @VMixStatusNode(name="edition")
     private String vMixEdition;
 
     @Element(name="preset",required = false)
+    @VMixStatusNode(name="preset")
     private String preset;
 
     @ElementList(name="inputs")
-    private List<Input> inputs;
+    @VMixStatusListNode(name="inputs", type = Input.class)
+    private List<Input> inputs = new ArrayList<>();
 
     @ElementList(name="overlays")
-    private List<Overlay> overlays;
+    @VMixStatusListNode(name="overlays", type = Overlay.class)
+    private List<Overlay> overlays = new ArrayList<>();
 
     @Element(name="preview")
+    @VMixStatusNode(name="previewInput", type = Integer.class)
     private int previewInput;
 
     @Element(name="active")
+    @VMixStatusNode(name="active", type = Integer.class)
     private int activeInput;
 
     @Element(name="fadeToBlack")
+    @VMixStatusNode(name="fadeToBlack", type = Boolean.class)
     private boolean isFadeToBlack;
 
     @ElementList(name="transitions")
-    private List<Transition> transitions;
+    @VMixStatusListNode(name="transitions", type = Transition.class)
+    private List<Transition> transitions = new ArrayList<>();
 
     @Element(name="recording")
+    @VMixStatusNode(name = "recording", type = Boolean.class)
     private boolean isRecording;
 
     @Element(name="external")
+    @VMixStatusNode(name="external", type = Boolean.class)
     private boolean isExternal;
 
     @Element(name="streaming")
+    @VMixStatusNode(name="streaming", type = Boolean.class)
     private boolean isStreaming;
 
     @Element(name="playList")
+    @VMixStatusNode(name="playList", type = Boolean.class)
     private boolean isPlaylist;
 
     @Element(name="multiCorder")
+    @VMixStatusNode(name="multiCorder", type = Boolean.class)
     private boolean isMultiRecording;
 
     @Element(name="fullscreen")
+    @VMixStatusNode(name="fullscreen", type = Boolean.class)
     private boolean isFullScreen;
 
     @ElementList(name="audio")
-    private List<Audio> audio;
+    @VMixStatusListNode(name="audio", type = Audio.class)
+    private List<Audio> audio = new ArrayList<>();
 
 
     private Set<HostStatusChangeListener> listeners;
+
+
+    public static VMixStatus decode(String message) {
+
+        VMixStatus status = new VMixStatus();
+
+        try {
+            status.parseXML(message);
+        } catch(IOException e) { return null; } // end of catch
+
+        return status;
+    } // end of decode
+
 
     public void setListeners(Set<HostStatusChangeListener> listeners) {
 
@@ -236,4 +266,7 @@ public class VMixStatus {
 
         return null;
     } // end of getOverlay
+
+
+    public String getVMixVersion() { return vMixVersion; } // end of getVMixVersion
 } // end of VMixStatus

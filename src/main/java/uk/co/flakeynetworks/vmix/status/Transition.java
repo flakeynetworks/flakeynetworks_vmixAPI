@@ -4,15 +4,18 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root(strict=false)
-public class Transition implements Comparable<Transition> {
+public class Transition extends XMLParseable implements Comparable<Transition> {
 
     @Attribute
+    @VMixStatusAttribute(name = "number", type = Integer.class)
     private int number;
 
     @Attribute
+    @VMixStatusAttribute(name = "effect")
     private String effect;
 
     @Attribute
+    @VMixStatusAttribute(name = "duration", type = Integer.class)
     private int duration;
 
 

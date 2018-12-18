@@ -1,9 +1,5 @@
 package uk.co.flakeynetworks.vmix;
 
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
-import uk.co.flakeynetworks.vmix.api.VMixStatusAPI;
 import uk.co.flakeynetworks.vmix.api.command.VMixCommand;
 import uk.co.flakeynetworks.vmix.api.exceptions.FeatureNotAvailableException;
 import uk.co.flakeynetworks.vmix.api.service.VMixAPIService;
