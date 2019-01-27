@@ -6,6 +6,7 @@ import uk.co.flakeynetworks.vmix.status.VMixStatus;
 
 import java.io.IOException;
 
+@Deprecated
 public class VMixAPIRetrofit implements VMixWebAPI {
 
 

@@ -24,11 +24,11 @@ public class VMixStatus extends XMLParseable {
 
     @ElementList(name="inputs")
     @VMixStatusListNode(name="inputs", type = Input.class)
-    private List<Input> inputs = new ArrayList<>();
+    private final List<Input> inputs = new ArrayList<>();
 
     @ElementList(name="overlays")
     @VMixStatusListNode(name="overlays", type = Overlay.class)
-    private List<Overlay> overlays = new ArrayList<>();
+    private final List<Overlay> overlays = new ArrayList<>();
 
     @Element(name="preview")
     @VMixStatusNode(name="previewInput", type = Integer.class)
@@ -44,7 +44,7 @@ public class VMixStatus extends XMLParseable {
 
     @ElementList(name="transitions")
     @VMixStatusListNode(name="transitions", type = Transition.class)
-    private List<Transition> transitions = new ArrayList<>();
+    private final List<Transition> transitions = new ArrayList<>();
 
     @Element(name="recording")
     @VMixStatusNode(name = "recording", type = Boolean.class)
@@ -72,7 +72,7 @@ public class VMixStatus extends XMLParseable {
 
     @ElementList(name="audio")
     @VMixStatusListNode(name="audio", type = Audio.class)
-    private List<Audio> audio = new ArrayList<>();
+    private final List<Audio> audio = new ArrayList<>();
 
 
     private Set<HostStatusChangeListener> listeners;
@@ -96,10 +96,11 @@ public class VMixStatus extends XMLParseable {
     } // end of setListeners
 
 
-    public boolean isRecording() {
-
-        return isRecording;
-    } // end of isRecording
+    /**
+     * Returns is the vmix instance is currently set to record.
+     * @return boolean representing if this vmix instance is recording
+     */
+    public boolean isRecording() { return isRecording; } // end of isRecording
 
 
     public void update(VMixStatus newStatus) {
@@ -110,46 +111,49 @@ public class VMixStatus extends XMLParseable {
 
         // Go through the last known inputs, if they are still there then update them
         // TODO Put this into a function so that we don't have repeatative code below
-        Iterator<Input> currentInputs = inputs.iterator();
-        while(currentInputs.hasNext()) {
+        synchronized (inputs) {
 
-            Input input = currentInputs.next();
+            Iterator<Input> currentInputs = inputs.iterator();
+            while (currentInputs.hasNext()) {
 
-            if(newStatus.inputs.contains(input)) {
+                Input input = currentInputs.next();
 
-                Input newInput = newStatus.getInput(input.getKey());
-                input.update(newInput);
-            } else {
-                currentInputs.remove();
+                if (newStatus.inputs.contains(input)) {
 
-                // Notify all the listeners
-                input.notifyInputWasRemoved();
+                    Input newInput = newStatus.getInput(input.getKey());
+                    input.update(newInput);
+                } else {
+                    currentInputs.remove();
+
+                    // Notify all the listeners
+                    input.notifyInputWasRemoved();
+
+                    // Notify all the listeners that an input was added
+                    if (listeners != null) {
+                        for (HostStatusChangeListener listener : listeners)
+                            listener.inputRemoved(input);
+                    } // end of if
+                } // end of else
+            } // end of for
+
+            // See if there are any new inputs
+            for (Input newInput : newStatus.inputs) {
+
+                if (inputs.contains(newInput)) continue;
+
+                inputs.add(newInput);
 
                 // Notify all the listeners that an input was added
-                if(listeners != null) {
+                if (listeners != null) {
                     for (HostStatusChangeListener listener : listeners)
-                        listener.inputRemoved(input);
+                        listener.inputAdded(newInput);
                 } // end of if
-            } // end of else
-        } // end of for
-
-        // See if there are any new inputs
-        for(Input newInput: newStatus.inputs) {
-
-            if(inputs.contains(newInput)) continue;
-
-            inputs.add(newInput);
-
-            // Notify all the listeners that an input was added
-            if(listeners != null) {
-                for (HostStatusChangeListener listener : listeners)
-                    listener.inputAdded(newInput);
-            } // end of if
-        } // end of for
+            } // end of for
 
 
-        // Sort the inputs based on number
-        Collections.sort(inputs);
+            // Sort the inputs based on number
+            Collections.sort(inputs);
+        } // end of synchronized
 
 
         previewInput = newStatus.previewInput;
@@ -163,67 +167,72 @@ public class VMixStatus extends XMLParseable {
         isFullScreen = newStatus.isFullScreen;
 
 
-        // Go through the last known overlays, if they are still there then update them
-        Iterator<Overlay> currentOverlays = overlays.iterator();
-        while(currentOverlays.hasNext()) {
+        synchronized (overlays) {
+            // Go through the last known overlays, if they are still there then update them
+            Iterator<Overlay> currentOverlays = overlays.iterator();
+            while (currentOverlays.hasNext()) {
 
-            Overlay overlay = currentOverlays.next();
+                Overlay overlay = currentOverlays.next();
 
-            if(newStatus.overlays.contains(overlay)) {
+                if (newStatus.overlays.contains(overlay)) {
 
-                Overlay newOverlay = newStatus.getOverlay(overlay.getNumber());
-                overlay.update(newOverlay);
-            } else {
+                    Overlay newOverlay = newStatus.getOverlay(overlay.getNumber());
+                    overlay.update(newOverlay);
+                } else {
 
-                currentOverlays.remove();
-            } // end of else
-        } // end of for
-
-
-        // See if there are any new overlays
-        for(Overlay newOverlay: newStatus.overlays) {
-
-            if(overlays.contains(newOverlay)) continue;
-
-            overlays.add(newOverlay);
-        } // end of for
-
-        // Sort the overlays based on number
-        Collections.sort(overlays);
+                    currentOverlays.remove();
+                } // end of else
+            } // end of for
 
 
-        // Go through the last known transitions, if they are still there then update them
-        Iterator<Transition> currentTransitions = transitions.iterator();
-        while(currentTransitions.hasNext()) {
+            // See if there are any new overlays
+            for (Overlay newOverlay : newStatus.overlays) {
 
-            Transition transition = currentTransitions.next();
+                if (overlays.contains(newOverlay)) continue;
 
-            if(newStatus.transitions.contains(transition)) {
+                overlays.add(newOverlay);
+            } // end of for
 
-                Transition newTransition = newStatus.getTransition(transition.getNumber());
-                transition.update(newTransition);
-            } else {
-
-                currentTransitions.remove();
-            } // end of else
-        } // end of for
+            // Sort the overlays based on number
+            Collections.sort(overlays);
+        } // end of synchronized
 
 
-        // See if there are any new overlays
-        for(Transition newTranition: newStatus.transitions) {
+        synchronized (transitions) {
+            // Go through the last known transitions, if they are still there then update them
+            Iterator<Transition> currentTransitions = transitions.iterator();
+            while (currentTransitions.hasNext()) {
 
-            if(transitions.contains(newTranition)) continue;
+                Transition transition = currentTransitions.next();
 
-            transitions.add(newTranition);
-        } // end of for
+                if (newStatus.transitions.contains(transition)) {
 
-        // Sort the overlays based on number
-        Collections.sort(transitions);
+                    Transition newTransition = newStatus.getTransition(transition.getNumber());
+                    transition.update(newTransition);
+                } else {
+
+                    currentTransitions.remove();
+                } // end of else
+            } // end of for
+
+
+            // See if there are any new overlays
+            for (Transition newTranition : newStatus.transitions) {
+
+                if (transitions.contains(newTranition)) continue;
+
+                transitions.add(newTranition);
+            } // end of for
+
+            // Sort the overlays based on number
+            Collections.sort(transitions);
+        } // end of synchronized
 
         // TODO have to find a way to update the audio
     } // end of update
 
 
+    @SuppressWarnings("WeakerAccess")
     public Transition getTransition(int number) {
 
         for(Transition transition: transitions) {
@@ -236,33 +245,48 @@ public class VMixStatus extends XMLParseable {
     } // end of getTransition
 
 
-    public int getNumberOfInputs() { return inputs.size(); } // end of getNumberOfInputs
+    public int getNumberOfInputs() {
+        synchronized (inputs) {
+            return inputs.size();
+        } // end of getNumberOfInputs
+    } // end of getNumberOfInputs
 
 
     public Input getInput(int index) {
 
-        if(index < 0 || index >= inputs.size()) return null;
+        if(index < 0) return null;
 
-        return inputs.get(index);
+        synchronized (inputs) {
+
+            if(index >= inputs.size()) return null;
+            return inputs.get(index);
+        } // end of synchronized
     } // end of getInput
 
 
+    @SuppressWarnings("WeakerAccess")
     public Input getInput(String key) {
 
-        for(Input input: inputs) {
-            if(input.getKey().equals(key)) return input;
-        } // end of for
+        synchronized (inputs) {
+
+            for (Input input : inputs) {
+                if (input.getKey().equals(key)) return input;
+            } // end of for
+        } // end of synchronized
 
         return null;
     } // end of getInput
 
 
+    @SuppressWarnings("WeakerAccess")
     public Overlay getOverlay(int number) {
 
-        for(Overlay overlay: overlays) {
+        synchronized (overlays) {
+            for (Overlay overlay : overlays) {
 
-            if(overlay.getNumber() == number) return overlay;
-        } // end of for
+                if (overlay.getNumber() == number) return overlay;
+            } // end of for
+        } // end of synchronized
 
         return null;
     } // end of getOverlay

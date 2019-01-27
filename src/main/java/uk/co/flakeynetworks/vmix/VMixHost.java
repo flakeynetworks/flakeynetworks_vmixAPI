@@ -120,7 +120,11 @@ public class VMixHost {
             } else {
                 lastKnownStatus.update(newStatus);
             } // end of else
-        } catch (IOException ignored){ return false; } // end of catch
+        } catch (IOException ignored){
+
+            ignored.printStackTrace();
+            return false;
+        } // end of catch
 
         return true;
     } // end of update

@@ -4,6 +4,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import uk.co.flakeynetworks.vmix.status.VMixStatus;
 
+@Deprecated
 public interface VMixRetrofitStatusAPI {
 
     @GET("?")

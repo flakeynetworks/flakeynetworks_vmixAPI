@@ -10,8 +10,6 @@ public class VMixAPIServicePOJ implements VMixAPIService {
     @Override
     public VMixWebAPI connect(URL url) {
 
-        VMixWebAPI retrofitService = new VMixAPIPOJ(url);
-
-        return retrofitService;
+        return new VMixAPIPOJ(url);
     } // end of connect
 } // end of VMixAPIServicePOJ

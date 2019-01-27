@@ -8,6 +8,7 @@ import uk.co.flakeynetworks.vmix.api.web.retrofit.VMixRetrofitStatusAPI;
 
 import java.net.URL;
 
+@Deprecated
 public class VMixAPIServiceRetrofit implements VMixAPIService {
 
     @Override
@@ -23,8 +24,6 @@ public class VMixAPIServiceRetrofit implements VMixAPIService {
         VMixRetrofitStatusAPI statusAPI = retrofit.create(VMixRetrofitStatusAPI.class);
 
         // Encapsulate the retrofit implement into the service interface.
-        VMixAPIRetrofit retrofitService = new VMixAPIRetrofit(statusAPI);
-
-        return retrofitService;
+        return new VMixAPIRetrofit(statusAPI);
     } // end of connect
 } // end of VMixAPIServiceRetrofit
