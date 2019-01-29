@@ -132,6 +132,8 @@ public class VMixHost {
 
     public String getAddress() { return vMixAddress; } // end of getAddress
 
+    public int getPort() { return vMixPort; } // end of getPort
+
     public void setVersion(VMixVersion version) { this.version = version; } // end of setVersion
 
     public VMixVersion getVersion() { return version; } // end of getVersion
