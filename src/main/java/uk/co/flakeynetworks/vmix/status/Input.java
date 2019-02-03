@@ -6,6 +6,7 @@ import org.simpleframework.xml.Root;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("WeakerAccess")
 @Root(strict=false)
 public class Input extends XMLParseable implements Comparable<Input> {
 
@@ -90,6 +91,9 @@ public class Input extends XMLParseable implements Comparable<Input> {
     public String getKey() { return key; } // end of getKey
     public int getDuration() { return duration; } // end of getDuration
     public int getNumber() { return number; } // end of getNumber
+
+    protected void setName(String name) { this.title = name; } // end of setName
+    protected void setType(String type) { this.type = type; } // end of setType
 
     public String getType() {
 
