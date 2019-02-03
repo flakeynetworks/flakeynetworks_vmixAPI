@@ -192,6 +192,10 @@ public class Input extends XMLParseable implements Comparable<Input> {
 
     public boolean equals(Input input) {
 
+        if(input == null) return false;
+
+        if(key == null && input.getKey() == null) return true;
+
         return key.equals(input.key);
     } // end of equals
 
